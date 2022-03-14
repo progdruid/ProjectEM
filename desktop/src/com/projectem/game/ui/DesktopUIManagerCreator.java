@@ -1,4 +1,6 @@
-package com.projectem.game;
+package com.projectem.game.ui;
+
+import com.projectem.game.Game;
 
 public class DesktopUIManagerCreator implements IUIManagerCreator {
 

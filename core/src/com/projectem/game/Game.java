@@ -1,10 +1,14 @@
 package com.projectem.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.projectem.game.input.IInputManager;
+import com.projectem.game.input.IInputManagerCreator;
+import com.projectem.game.input.IUniversalInputAcceptor;
+import com.projectem.game.ui.IUIManager;
+import com.projectem.game.ui.IUIManagerCreator;
 
-public class Game extends ApplicationAdapter implements  IUniversalInputAcceptor {
+public class Game extends ApplicationAdapter implements IUniversalInputAcceptor {
 
 	IInputManager inputManager;
 	IUIManager ui;

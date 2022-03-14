@@ -1,4 +1,4 @@
-package com.projectem.game;
+package com.projectem.game.input;
 
 public interface IUniversalInputAcceptor {
 }

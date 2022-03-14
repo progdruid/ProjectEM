@@ -1,4 +1,4 @@
-package com.projectem.game;
+package com.projectem.game.input;
 
 public interface IInputManagerCreator {
     public IInputManager createInputManager (IUniversalInputAcceptor acceptor);

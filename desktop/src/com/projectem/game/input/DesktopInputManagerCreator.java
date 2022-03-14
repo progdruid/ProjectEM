@@ -1,6 +1,6 @@
-package com.projectem.game;
+package com.projectem.game.input;
 
-public class DesktopInputManagerCreator implements IInputManagerCreator{
+public class DesktopInputManagerCreator implements IInputManagerCreator {
     @Override
     public IInputManager createInputManager(IUniversalInputAcceptor acceptor) {
         return new DesktopInputManager(acceptor);
