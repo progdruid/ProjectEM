@@ -5,7 +5,7 @@ import com.projectem.game.ui.IUIManager;
 
 public class DesktopUIManager implements IUIManager
 {
-    public DesktopUIManager (Game game) {
+    public DesktopUIManager (IUIAcceptor acceptor) {
 
     }
 
