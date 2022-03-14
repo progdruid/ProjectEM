@@ -12,18 +12,26 @@ public class DesktopLauncher {
 		int defaultWindowWidth = 1080;
 		int defaultWindowHeight = 720;
 
+		Lwjgl3ApplicationConfiguration config = CreateAppConfig(mode, defaultWindowWidth, defaultWindowHeight);
+		Game game = new Game(new DesktopUIManagerCreator());
+
+		Lwjgl3Application app = new Lwjgl3Application(game, config);
+	}
+
+	private static Lwjgl3ApplicationConfiguration CreateAppConfig (WindowMode mode, int windowWidth, int windowHeight)
+	{
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		Game game = new Game();
+
 
 		if (mode == WindowMode.Windowed) {
 			config.setResizable(false);
 			config.setDecorated(true);
-			config.setWindowedMode(defaultWindowWidth, defaultWindowHeight);
+			config.setWindowedMode(windowWidth, windowHeight);
 		}
 		else if (mode == WindowMode.Windowed_Borderless) {
 			config.setResizable(false);
 			config.setDecorated(false);
-			config.setWindowedMode(defaultWindowWidth, defaultWindowHeight);
+			config.setWindowedMode(windowWidth, windowHeight);
 		}
 		else if (mode == WindowMode.Fullscreen)
 		{
@@ -33,6 +41,6 @@ public class DesktopLauncher {
 		}
 		config.setForegroundFPS(60);
 
-		Lwjgl3Application application = new Lwjgl3Application(game, config);
+		return config;
 	}
 }
