@@ -13,7 +13,7 @@ public class DesktopLauncher {
 		int defaultWindowHeight = 720;
 
 		Lwjgl3ApplicationConfiguration config = CreateAppConfig(mode, defaultWindowWidth, defaultWindowHeight);
-		Game game = new Game(new DesktopUIManagerCreator());
+		Game game = new Game(new DesktopInputManagerCreator(), new DesktopUIManagerCreator());
 
 		Lwjgl3Application app = new Lwjgl3Application(game, config);
 	}

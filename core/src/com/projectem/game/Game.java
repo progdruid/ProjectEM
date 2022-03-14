@@ -4,11 +4,13 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class Game extends ApplicationAdapter {
+public class Game extends ApplicationAdapter implements  IUniversalInputAcceptor {
 
+	IInputManager inputManager;
 	IUIManager ui;
 
-	public Game (IUIManagerCreator uiCreator) {
+	public Game (IInputManagerCreator inputCreator, IUIManagerCreator uiCreator) {
+		inputManager = inputCreator.createInputManager(this);
 		ui = uiCreator.createUIManager(this);
 	}
 
