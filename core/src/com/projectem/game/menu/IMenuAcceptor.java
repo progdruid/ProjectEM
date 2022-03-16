@@ -1,0 +1,5 @@
+package com.projectem.game.menu;
+
+public interface IMenuAcceptor {
+    public void startGame ();
+}

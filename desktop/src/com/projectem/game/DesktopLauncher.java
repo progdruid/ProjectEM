@@ -3,6 +3,7 @@ package com.projectem.game;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.projectem.game.input.DesktopInputManagerCreator;
+import com.projectem.game.menu.DesktopMenuCreator;
 import com.projectem.game.ui.DesktopUIManagerCreator;
 
 public class DesktopLauncher {
@@ -12,9 +13,9 @@ public class DesktopLauncher {
 		int defaultWindowHeight = 720;
 
 		Lwjgl3ApplicationConfiguration config = CreateAppConfig(mode, defaultWindowWidth, defaultWindowHeight);
-		Game game = new Game(new DesktopInputManagerCreator(), new DesktopUIManagerCreator());
+		Program program = new Program(new DesktopMenuCreator(), new DesktopInputManagerCreator(), new DesktopUIManagerCreator());
 
-		Lwjgl3Application app = new Lwjgl3Application(game, config);
+		Lwjgl3Application app = new Lwjgl3Application(program, config);
 	}
 
 	private static Lwjgl3ApplicationConfiguration CreateAppConfig (WindowMode mode, int windowWidth, int windowHeight)
