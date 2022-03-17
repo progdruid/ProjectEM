@@ -1,5 +1,7 @@
 package com.projectem.game.menu;
 
-public interface IMenu {
+import com.badlogic.gdx.utils.Disposable;
+
+public interface IMenu extends Disposable {
     public void render();
 }
