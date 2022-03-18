@@ -4,26 +4,29 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Disposable;
+import com.projectem.game.render.CommonRender;
 import com.projectem.game.ui.UIText;
 
 public class DesktopMenu implements IMenu, InputProcessor {
 
     IMenuAcceptor acceptor;
 
-    //UIText playButtonText;
-    //int playButtonHalfWidth = 40;
-    //int playButtonHalfHeight = 10;
+    UIText playButtonText;
+    int playButtonHalfWidth = 40;
+    int playButtonHalfHeight = 10;
 
 
     public DesktopMenu (IMenuAcceptor _acceptor) {
         acceptor = _acceptor;
         Gdx.input.setInputProcessor(this);
 
-        //playButtonText = new UIText(
-        //        "Play",
-        //        Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() /2,
-        //        0,
-        //        new BitmapFont());
+        playButtonText = new UIText(
+                "Play",
+                Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() /2,
+                0,
+                new BitmapFont(Gdx.files.internal("Font.fnt")));
+
+        CommonRender.ins.addUIElement(playButtonText);
 
         //UI image
     }

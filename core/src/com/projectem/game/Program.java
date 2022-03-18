@@ -19,12 +19,12 @@ public class Program extends ApplicationAdapter implements IMenuAcceptor {
 		this.inputCreator = inputCreator;
 		this.gameUICreator = gameUICreator;
 		this.menuCreator = menuCreator;
-
-		CommonRender.initializeRender();
 	}
 
 	@Override
 	public void create (){
+		CommonRender.initializeRender();
+
 		menu = menuCreator.openMenu(this);
 	}
 

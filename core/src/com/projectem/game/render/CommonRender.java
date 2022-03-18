@@ -1,5 +1,6 @@
 package com.projectem.game.render;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.projectem.game.ui.IUIElement;
@@ -36,14 +37,18 @@ public class CommonRender {
     public CommonRender () {
         batch = new SpriteBatch();
         spriteLayers = new List[countOfLayers];
+        for (int i = 0; i < countOfLayers; i++)
+            spriteLayers[i] = new ArrayList<>();
         uiElements = new ArrayList<>();
         //FileHandle
-        font = new BitmapFont(); //there should be font file
+        font = new BitmapFont(Gdx.files.internal("Font.fnt")); //there should be font file
     }
 
     //region api
     public void render(){
         ScreenUtils.clear(1, 0, 0, 1);
+
+        batch.begin();
 
         for (int i = 0; i < countOfLayers; i++) {
             for (int j = 0; j < spriteLayers[i].size(); j++) {
@@ -54,6 +59,8 @@ public class CommonRender {
         for (int i = 0; i < uiElements.size(); i++) {
             uiElements.get(i).draw(batch);
         }
+
+        batch.end();
     }
 
     public BitmapFont getFont () {

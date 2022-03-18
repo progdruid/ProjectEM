@@ -8,12 +8,16 @@ import com.projectem.game.ui.DesktopUIManagerCreator;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-		WindowMode mode = WindowMode.Fullscreen;
+		WindowMode mode = WindowMode.Windowed;
 		int defaultWindowWidth = 1080;
 		int defaultWindowHeight = 720;
 
 		Lwjgl3ApplicationConfiguration config = CreateAppConfig(mode, defaultWindowWidth, defaultWindowHeight);
-		Program program = new Program(new DesktopMenuCreator(), new DesktopInputManagerCreator(), new DesktopUIManagerCreator());
+		DesktopMenuCreator  menuCreator = new DesktopMenuCreator();
+		DesktopInputManagerCreator inputManagerCreator = new DesktopInputManagerCreator();
+		DesktopUIManagerCreator uiManagerCreator = new DesktopUIManagerCreator();
+
+		Program program = new Program(menuCreator, inputManagerCreator, uiManagerCreator);
 
 		Lwjgl3Application app = new Lwjgl3Application(program, config);
 	}
