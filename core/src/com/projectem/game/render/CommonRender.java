@@ -1,14 +1,9 @@
 package com.projectem.game.render;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.projectem.game.ui.IUIElement;
-import com.projectem.game.ui.UIText;
 
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -31,17 +26,14 @@ public class CommonRender {
     SpriteBatch batch;
     List<Sprite>[] spriteLayers;
     List<IUIElement> uiElements;
-    BitmapFont font;
     //endregion
 
     public CommonRender () {
         batch = new SpriteBatch();
-        spriteLayers = new List[countOfLayers];
+        spriteLayers = new ArrayList[countOfLayers];
         for (int i = 0; i < countOfLayers; i++)
             spriteLayers[i] = new ArrayList<>();
         uiElements = new ArrayList<>();
-        //FileHandle
-        font = new BitmapFont(Gdx.files.internal("Font.fnt")); //there should be font file
     }
 
     //region api
@@ -56,15 +48,11 @@ public class CommonRender {
             }
         }
 
-        for (int i = 0; i < uiElements.size(); i++) {
-            uiElements.get(i).draw(batch);
+        for (IUIElement uiElement : uiElements) {
+            uiElement.draw(batch);
         }
 
         batch.end();
-    }
-
-    public BitmapFont getFont () {
-        return font;
     }
 
     public void setCamera (Camera camera) {
