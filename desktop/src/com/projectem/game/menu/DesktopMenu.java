@@ -3,42 +3,51 @@ package com.projectem.game.menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.utils.Disposable;
 import com.projectem.game.render.CommonRender;
+import com.projectem.game.ui.IButtonListener;
+import com.projectem.game.ui.UIButton;
 import com.projectem.game.ui.UIText;
 
-public class DesktopMenu implements IMenu, InputProcessor {
+public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
 
     IMenuAcceptor acceptor;
 
-    UIText playButtonText;
-    int playButtonHalfWidth = 40;
-    int playButtonHalfHeight = 10;
+    UIButton playButton;
+    int playButtonHalfWidth = 80;
+    int playButtonHalfHeight = 20;
 
 
     public DesktopMenu (IMenuAcceptor _acceptor) {
         acceptor = _acceptor;
         Gdx.input.setInputProcessor(this);
 
-        playButtonText = new UIText(
+        playButton = new UIButton(
                 "Play",
-                Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() /2,
-                0,
-                new BitmapFont(Gdx.files.internal("Font.fnt")));
+                Gdx.graphics.getWidth() / 2 - playButtonHalfWidth,
+                Gdx.graphics.getHeight() / 2 - playButtonHalfHeight,
+                playButtonHalfWidth * 2,
+                playButtonHalfHeight * 2,
+                new BitmapFont (Gdx.files.internal("Font.fnt")));
 
-        CommonRender.ins.addUIElement(playButtonText);
+        CommonRender.ins.addUIElement(playButton);
+        playButton.addListener(this);
 
-        //UI image
+
     }
 
     @Override
-    public void render() {
+    public void update() {
 
     }
 
     @Override
     public void dispose() {
 
+    }
+
+    @Override
+    public void buttonPressed() {
+        acceptor.startGame();
     }
 
     //region InputProcessor handlers
@@ -59,7 +68,8 @@ public class DesktopMenu implements IMenu, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        acceptor.startGame();
+        if(button == 0)
+            playButton.handlePointInteract(screenX, screenY);
         return false;
     }
 

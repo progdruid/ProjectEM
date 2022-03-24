@@ -1,6 +1,7 @@
 package com.projectem.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
 import com.projectem.game.input.IInputManagerCreator;
 import com.projectem.game.menu.IMenu;
 import com.projectem.game.menu.IMenuAcceptor;
@@ -36,6 +37,7 @@ public class Program extends ApplicationAdapter implements IMenuAcceptor {
 	@Override
 	public void startGame() {
 		menu.dispose();
+		Gdx.app.exit();
 		//init of the game class
 	}
 
