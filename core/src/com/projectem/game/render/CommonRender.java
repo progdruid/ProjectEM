@@ -26,6 +26,7 @@ public class CommonRender {
     SpriteBatch batch;
     List<Sprite>[] spriteLayers;
     List<IUIElement> uiElements;
+    Camera camera;
     //endregion
 
     public CommonRender () {
@@ -40,6 +41,7 @@ public class CommonRender {
     public void render(){
         ScreenUtils.clear(1, 0, 0, 1);
 
+        batch.setProjectionMatrix(camera.combined);
         batch.begin();
 
         for (int i = 0; i < countOfLayers; i++) {
@@ -56,7 +58,7 @@ public class CommonRender {
     }
 
     public void setCamera (Camera camera) {
-        batch.setProjectionMatrix(camera.combined);
+        this.camera = camera;
     }
 
     public void addSprite (Sprite sprite, int layer) {
