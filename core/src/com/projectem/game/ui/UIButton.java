@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.projectem.game.render.CommonRender;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +53,8 @@ public class UIButton implements IUIElement {
     }
 
     private void invoke () {
-        for (IButtonListener listener : listeners)
-            listener.buttonPressed();
+        for (int i = 0; i < listeners.size(); i++)
+            listeners.get(i).buttonPressed();
     }
 
     public void addListener (IButtonListener listener) {
