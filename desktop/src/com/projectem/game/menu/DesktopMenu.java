@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.projectem.game.render.CommonRender;
 import com.projectem.game.ui.IButtonListener;
 import com.projectem.game.ui.UIButton;
-import com.projectem.game.ui.UIText;
 
 public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
 

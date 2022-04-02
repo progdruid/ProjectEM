@@ -2,7 +2,7 @@ package com.projectem.game;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.projectem.game.input.DesktopInputManagerCreator;
+import com.projectem.game.input.DesktopInputCreator;
 import com.projectem.game.menu.DesktopMenuCreator;
 import com.projectem.game.ui.DesktopUIManagerCreator;
 
@@ -14,7 +14,7 @@ public class DesktopLauncher {
 
 		Lwjgl3ApplicationConfiguration config = CreateAppConfig(mode, defaultWindowWidth, defaultWindowHeight);
 		DesktopMenuCreator  menuCreator = new DesktopMenuCreator();
-		DesktopInputManagerCreator inputManagerCreator = new DesktopInputManagerCreator();
+		DesktopInputCreator inputManagerCreator = new DesktopInputCreator();
 		DesktopUIManagerCreator uiManagerCreator = new DesktopUIManagerCreator();
 
 		Program program = new Program(menuCreator, inputManagerCreator, uiManagerCreator);

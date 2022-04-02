@@ -1,8 +1,8 @@
 package com.projectem.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.projectem.game.input.IInputManagerCreator;
+import com.projectem.game.game.Game;
+import com.projectem.game.input.IPlatformInputCreator;
 import com.projectem.game.menu.IMenu;
 import com.projectem.game.menu.IMenuAcceptor;
 import com.projectem.game.menu.IMenuCreator;
@@ -10,13 +10,15 @@ import com.projectem.game.render.CommonRender;
 import com.projectem.game.ui.IUIManagerCreator;
 
 public class Program extends ApplicationAdapter implements IMenuAcceptor {
-	IInputManagerCreator inputCreator;
+	IPlatformInputCreator inputCreator;
 	IUIManagerCreator gameUICreator;
 	IMenuCreator menuCreator;
 
 	IMenu menu;
 
-	public Program(IMenuCreator menuCreator, IInputManagerCreator inputCreator, IUIManagerCreator gameUICreator) {
+	Game game;
+
+	public Program(IMenuCreator menuCreator, IPlatformInputCreator inputCreator, IUIManagerCreator gameUICreator) {
 		this.inputCreator = inputCreator;
 		this.gameUICreator = gameUICreator;
 		this.menuCreator = menuCreator;
@@ -36,8 +38,10 @@ public class Program extends ApplicationAdapter implements IMenuAcceptor {
 
 	@Override
 	public void startGame() {
-		menu.dispose();
-		Gdx.app.exit();
+		this.menu.dispose();
+
+		this.game = new Game(gameUICreator, inputCreator);
+		//Gdx.app.exit();
 		//init of the game class
 	}
 
