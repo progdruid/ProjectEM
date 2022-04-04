@@ -1,4 +1,4 @@
-package com.projectem.game.render;
+package com.projectem.game;
 
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.projectem.game.ui.IUIElement;

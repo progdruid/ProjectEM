@@ -1,12 +1,10 @@
 package com.projectem.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.projectem.game.game.Game;
 import com.projectem.game.input.IPlatformInputCreator;
 import com.projectem.game.menu.IMenu;
 import com.projectem.game.menu.IMenuAcceptor;
 import com.projectem.game.menu.IMenuCreator;
-import com.projectem.game.render.CommonRender;
 import com.projectem.game.ui.IUIManagerCreator;
 
 public class Program extends ApplicationAdapter implements IMenuAcceptor {

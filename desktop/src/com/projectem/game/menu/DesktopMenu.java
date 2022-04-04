@@ -3,7 +3,7 @@ package com.projectem.game.menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.projectem.game.render.CommonRender;
+import com.projectem.game.CommonRender;
 import com.projectem.game.ui.IButtonListener;
 import com.projectem.game.ui.UIButton;
 

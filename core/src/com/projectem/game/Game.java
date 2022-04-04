@@ -1,4 +1,4 @@
-package com.projectem.game.game;
+package com.projectem.game;
 
 import com.projectem.game.input.*;
 import com.projectem.game.ui.*;
