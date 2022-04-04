@@ -26,6 +26,7 @@ public class CommonRender {
     private SpriteBatch batch;
     private List<Sprite>[] spriteLayers;
     private List<IUIElement> uiElements;
+    private boolean isCamera = false;
     private Camera camera;
     //endregion
 
@@ -41,7 +42,7 @@ public class CommonRender {
     public void render(){
         ScreenUtils.clear(1, 0, 0, 1);
 
-        if (camera != null)
+        if (isCamera)
             batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
@@ -61,6 +62,10 @@ public class CommonRender {
 
     public void setCamera (Camera camera) {
         this.camera = camera;
+    }
+
+    public void toggleCamera (boolean state) {
+        this.isCamera = state;
     }
 
     public void addSprite (Sprite sprite, int layer) {
