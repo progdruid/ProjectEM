@@ -11,17 +11,17 @@ import java.util.NoSuchElementException;
 
 public class UIButton implements IUIElement {
 
-    List<IButtonListener> listeners;
-    UIText text;
-    int x, y;
-    int width, height;
+    private final List<IButtonListener> listeners;
+    private final UIText text;
+    private final int x, y;
+    private final int width, height;
 
-    ShapeRenderer shapeRenderer; //will be deleted
+    private final ShapeRenderer shapeRenderer; //will be deleted
 
 
     public UIButton (String text, int x, int y, int width, int height, BitmapFont font) {
         listeners = new ArrayList<IButtonListener>();
-        this.text = new UIText(text, x + width/2, y + height/2, 0, font);
+        this.text = new UIText(text, x + width/2, y + height/2, font);
         this.x = x;
         this.y = y;
         this.width = width;

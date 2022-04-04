@@ -9,11 +9,11 @@ import com.projectem.game.ui.UIButton;
 
 public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
 
-    IMenuAcceptor acceptor;
+    private final IMenuAcceptor acceptor;
 
-    UIButton playButton;
-    int playButtonHalfWidth = 80;
-    int playButtonHalfHeight = 20;
+    private final UIButton playButton;
+    private final int playButtonHalfWidth = 80;
+    private final int playButtonHalfHeight = 20;
 
 
     public DesktopMenu (IMenuAcceptor _acceptor) {

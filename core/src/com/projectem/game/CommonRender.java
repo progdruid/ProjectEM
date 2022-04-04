@@ -22,11 +22,11 @@ public class CommonRender {
     //endregion
 
     //region fields
-    int countOfLayers = 1;
-    SpriteBatch batch;
-    List<Sprite>[] spriteLayers;
-    List<IUIElement> uiElements;
-    Camera camera;
+    private int countOfLayers = 1;
+    private SpriteBatch batch;
+    private List<Sprite>[] spriteLayers;
+    private List<IUIElement> uiElements;
+    private Camera camera;
     //endregion
 
     public CommonRender () {
@@ -41,7 +41,9 @@ public class CommonRender {
     public void render(){
         ScreenUtils.clear(1, 0, 0, 1);
 
-        batch.setProjectionMatrix(camera.combined);
+        if (camera != null)
+            batch.setProjectionMatrix(camera.combined);
+
         batch.begin();
 
         for (int i = 0; i < countOfLayers; i++) {

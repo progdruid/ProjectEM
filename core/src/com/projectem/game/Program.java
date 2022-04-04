@@ -7,14 +7,14 @@ import com.projectem.game.menu.*;
 import com.projectem.game.ui.*;
 
 public class Program extends ApplicationAdapter implements IMenuAcceptor {
-	IPlatformInputCreator inputCreator;
-	IUIManagerCreator gameUICreator;
-	IMenuCreator menuCreator;
+	private final IPlatformInputCreator inputCreator;
+	private final IUIManagerCreator gameUICreator;
+	private final IMenuCreator menuCreator;
 
-	IMenu menu;
-	Game game;
+	private IMenu menu;
+	private Game game;
 
-	GameState state;
+	private GameState state;
 
 	public Program(IMenuCreator menuCreator, IPlatformInputCreator inputCreator, IUIManagerCreator gameUICreator) {
 		this.inputCreator = inputCreator;
@@ -46,6 +46,8 @@ public class Program extends ApplicationAdapter implements IMenuAcceptor {
 
 		this.game = new Game(this.gameUICreator, this.inputCreator);
 		this.state = GameState.Game;
+
+		this.game.start();
 	}
 
 	@Override

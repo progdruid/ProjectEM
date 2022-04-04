@@ -9,16 +9,14 @@ public class UIText implements IUIElement {
     public final String text;
     public final int x;
     public final int y;
-    public final int size;
     public final BitmapFont font;
 
-    private GlyphLayout layout;
+    private final GlyphLayout layout;
 
-    public UIText (String text, int x, int y, int size, BitmapFont font) {
+    public UIText (String text, int x, int y, BitmapFont font) {
         this.text = text;
         this.x = x;
         this.y = y;
-        this.size = size;
         this.font = font;
         this.layout = new GlyphLayout();
         layout.setText(font, text);
