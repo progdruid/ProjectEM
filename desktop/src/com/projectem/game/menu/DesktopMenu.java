@@ -35,11 +35,6 @@ public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
     }
 
     @Override
-    public void update() {
-
-    }
-
-    @Override
     public void dispose() {
         CommonRender.ins.removeUIElement(playButton);
         playButton.removeListener(this);
