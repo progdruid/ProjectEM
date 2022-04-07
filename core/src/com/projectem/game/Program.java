@@ -1,7 +1,6 @@
 package com.projectem.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
 import com.projectem.game.input.*;
 import com.projectem.game.menu.*;
 import com.projectem.game.ui.*;
@@ -35,7 +34,7 @@ public class Program extends ApplicationAdapter implements IMenuAcceptor {
 		CommonRender.ins.render();//multithreading is needed
 
 		if (this.state == GameState.Game)
-			this.game.renderUpdate();
+			this.game.frameUpdate();
 //		else if (this.state == GameState.Menu)
 //			this.menu.update();
 	}

@@ -18,6 +18,7 @@ public class DesktopInput implements IPlatformInput {
 
     @Override
     public void update() {
+        //translation
         Vector2 movedir = new Vector2();
 
         if (Gdx.input.isKeyPressed(Input.Keys.W))
@@ -32,6 +33,7 @@ public class DesktopInput implements IPlatformInput {
         if (movedir.x != 0 || movedir.y != 0)
             acceptor.move(movedir);
 
+        //zoom
         if (Gdx.input.isKeyPressed(Input.Keys.Q))
             acceptor.zoom(0.02f);
         else if (Gdx.input.isKeyPressed(Input.Keys.E))
@@ -77,6 +79,7 @@ public class DesktopInput implements IPlatformInput {
 
     @Override
     public boolean scrolled(float amountX, float amountY) {
+        acceptor.zoom(amountY * 0.1f);
         return false;
     }
 }

@@ -40,13 +40,18 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor {
 
     }
 
-    public void renderUpdate() {
+    public void frameUpdate() {
         inputManager.update();
     }
 
     @Override
     public void move(Vector2 direction) {
-        camera.translate(direction.scl((camera.zoom + 1) * camera.viewportWidth * cameraSpeed * Gdx.graphics.getDeltaTime()));
+        move(direction, cameraSpeed);
+    }
+
+    @Override
+    public void move(Vector2 direction, float speed) {
+        camera.translate(direction.scl((camera.zoom + 1) * camera.viewportWidth * speed * Gdx.graphics.getDeltaTime()));
         camera.update();
     }
 

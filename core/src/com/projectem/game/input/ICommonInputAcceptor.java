@@ -5,5 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 public interface ICommonInputAcceptor {
 
     public void move(Vector2 direction);
+    public void move(Vector2 direction, float speed);
     public void zoom(float amount);
 }
