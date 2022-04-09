@@ -1,8 +1,9 @@
 package com.projectem.game.ecs;
 
-public interface ISystem {
+import com.badlogic.gdx.utils.Disposable;
+
+public interface ISystem extends Disposable {
     public void update();
-    public void createComponent(Entity entity);
+    public IComponent createComponent(Entity entity);
     public void deleteComponent(Entity entity);
-    public IComponent getComponent(Entity entity);
 }

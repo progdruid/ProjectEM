@@ -1,17 +1,22 @@
 package com.projectem.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Disposable;
+import com.projectem.game.ecs.*;
 import com.projectem.game.input.*;
 import com.projectem.game.ui.*;
 
-public class Game implements IUIAcceptor, ICommonInputAcceptor {
+import java.util.HashMap;
+
+public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
 
     private final IUIManager uiManager;
     private final IPlatformInput inputManager;
+
+    private HashMap<String, ISystem> systems;
 
     private OrthographicCamera camera;
     private final float cameraSpeed = 0.25f;
@@ -24,6 +29,11 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor {
     }
 
     public void start () {
+        EntityGod.init();
+        systems = new HashMap<>();
+        //creating
+        //systems
+
         inputManager.startProcessing();
 
         this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -55,6 +65,7 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor {
         camera.update();
     }
 
+    @Override
     public void zoom(float amount) {
         float nextZoom = camera.zoom + amount * (camera.zoom + 1);
         if (nextZoom < minZoom)
@@ -64,5 +75,19 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor {
         else
             camera.zoom = nextZoom;
         camera.update();
+    }
+
+    @Override
+    public void dispose() {
+        EntityGod.ins.dispose();
+        String[] keys = systems.keySet().toArray(new String[0]);
+        for (int i = 0; i < keys.length; i++){
+            systems.get(keys[i]).dispose();
+        }
+        systems.clear();
+    }
+
+    public void exitGame () {
+        dispose();
     }
 }
