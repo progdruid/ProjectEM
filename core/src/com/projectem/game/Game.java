@@ -43,7 +43,7 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         Texture tex = new Texture(Gdx.files.internal("badlogic.jpg"));
         Sprite sprite = new Sprite(tex);
 
-        CommonRender.ins.addSprite(sprite, 0);
+        CommonRender.ins.addSprite(sprite);
     }
 
     public void logicUpdate () {

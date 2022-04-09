@@ -1,6 +1,7 @@
 package com.projectem.game;
 
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.projectem.game.ecs.SpriteComponent;
 import com.projectem.game.ui.IUIElement;
 
 import com.badlogic.gdx.graphics.Camera;
@@ -24,7 +25,7 @@ public class CommonRender {
     //region fields
     private int countOfLayers = 1;
     private SpriteBatch batch;
-    private List<Sprite>[] spriteLayers;
+    private List<Sprite> sprites;
     private List<IUIElement> uiElements;
     private boolean isCamera = false;
     private Camera camera;
@@ -32,9 +33,7 @@ public class CommonRender {
 
     public CommonRender () {
         batch = new SpriteBatch();
-        spriteLayers = new ArrayList[countOfLayers];
-        for (int i = 0; i < countOfLayers; i++)
-            spriteLayers[i] = new ArrayList<>();
+        sprites = new ArrayList<>();
         uiElements = new ArrayList<>();
     }
 
@@ -47,17 +46,19 @@ public class CommonRender {
 
         batch.begin();
 
-        for (int i = 0; i < countOfLayers; i++) {
-            for (int j = 0; j < spriteLayers[i].size(); j++) {
-                spriteLayers[i].get(j).draw(batch);
-            }
+        //Sprites
+        for (int i = 0; i < sprites.size(); i++) {
+            sprites.get(i).draw(batch);
         }
 
+        //UI
         for (IUIElement uiElement : uiElements) {
             uiElement.draw(batch);
         }
 
         batch.end();
+
+        sprites.clear();
     }
 
     public void setCamera (Camera camera) {
@@ -68,24 +69,20 @@ public class CommonRender {
         this.isCamera = state;
     }
 
-    public void addSprite (Sprite sprite, int layer) {
-        spriteLayers[layer].add(sprite);
+    public void addSprite (Sprite sprite) {
+        sprites.add(sprite);
     }
 
-    public void removeSprite (Sprite sprite, int layer) throws NoSuchElementException {
-        boolean res = spriteLayers[layer].remove(sprite);
-        if (!res)
-            throw new NoSuchElementException("There is no such sprite in the layer like was given.");
+    public boolean removeSprite (Sprite sprite) {
+        return sprites.remove(sprite);
     }
 
     public void addUIElement (IUIElement element) {
         uiElements.add(element);
     }
 
-    public void removeUIElement (IUIElement element) {
-        boolean res = uiElements.remove(element);
-        if (!res)
-            throw new NoSuchElementException("There is no such UI element");
+    public boolean removeUIElement (IUIElement element) {
+        return uiElements.remove(element);
     }
 
     //endregion
