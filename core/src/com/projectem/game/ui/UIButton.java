@@ -1,5 +1,6 @@
 package com.projectem.game.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,7 +13,7 @@ import java.util.NoSuchElementException;
 public class UIButton implements IUIElement {
 
     private final List<IButtonListener> listeners;
-    private final UIText text;
+    private final UIText uiText;
     private final int x, y;
     private final int width, height;
 
@@ -21,7 +22,7 @@ public class UIButton implements IUIElement {
 
     public UIButton (String text, int x, int y, int width, int height, BitmapFont font) {
         listeners = new ArrayList<IButtonListener>();
-        this.text = new UIText(text, x + width/2, y + height/2, font);
+        this.uiText = new UIText(text, x + width/2, y + height/2, font);
         this.x = x;
         this.y = y;
         this.width = width;
@@ -43,17 +44,18 @@ public class UIButton implements IUIElement {
         batch.begin();
         //endregion
 
-        text.draw(batch);
+        uiText.draw(batch);
     }
 
     public void handlePointInteract(int x, int y) {
+        y = Gdx.graphics.getHeight() - y;
         if (x >= this.x && x < this.x + this.width && y >= this.y && y < this.y + this.height)
             invoke();
     }
 
     private void invoke () {
         for (int i = 0; i < listeners.size(); i++)
-            listeners.get(i).buttonPressed();
+            listeners.get(i).handleButtonPress(this.uiText.text);
     }
 
     public void addListener (IButtonListener listener) {

@@ -1,6 +1,7 @@
 package com.projectem.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
 import com.projectem.game.input.*;
 import com.projectem.game.menu.*;
 import com.projectem.game.ui.*;
@@ -56,4 +57,10 @@ public class Program extends ApplicationAdapter implements ISceneManager {
 
 	@Override
 	public void dispose () {}
+
+	@Override
+	public void quitGame() {
+		dispose();
+		Gdx.app.exit();
+	}
 }
