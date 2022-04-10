@@ -7,11 +7,13 @@ public class Entity implements Disposable {
 
     public String name = "";
     public HashMap<String, IComponent> components;
+    public TransformComponent transform;
 
     public Entity (String name) {
         EntityGod.ins.entities.add(this);
         this.name = name;
         this.components = new HashMap<>();
+        transform = (TransformComponent) TransformSystem.ins.createComponent(this);
     }
 
     public void dispose (){
