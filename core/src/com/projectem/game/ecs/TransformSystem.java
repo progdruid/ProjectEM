@@ -3,11 +3,18 @@ package com.projectem.game.ecs;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TransformSystem implements ISystem{
+public class TransformSystem implements IComponentSystem {
+
+    //region static
+    public static TransformSystem ins;
+    public static void init () {
+        ins = new TransformSystem();
+    }
+    //endregion
 
     private List<TransformComponent> transforms;
 
-    public TransformSystem () {
+    public TransformSystem() {
         transforms = new ArrayList<>();
     }
 

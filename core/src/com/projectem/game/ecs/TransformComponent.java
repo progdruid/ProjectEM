@@ -20,7 +20,7 @@ public class TransformComponent implements IComponent{
     }
 
     @Override
-    public ISystem getSystem() {
+    public IComponentSystem getSystem() {
         return system;
     }
 }

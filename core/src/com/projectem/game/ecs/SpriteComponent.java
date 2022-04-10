@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.projectem.game.CommonRender;
 
 public class SpriteComponent implements IComponent{
 
@@ -39,7 +38,7 @@ public class SpriteComponent implements IComponent{
     }
 
     @Override
-    public ISystem getSystem() {
+    public IComponentSystem getSystem() {
         return system;
     }
 }

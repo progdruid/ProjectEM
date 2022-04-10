@@ -2,20 +2,24 @@ package com.projectem.game.ecs;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.projectem.game.CommonRender;
-import com.projectem.game.Game;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpriteSystem implements ISystem{
+public class SpriteSystem implements IComponentSystem {
+
+    //region static
+    public static SpriteSystem ins;
+    public static void init () {
+        ins = new SpriteSystem();
+    }
+    //endregion
 
     private List<SpriteComponent> spriteComponents;
-    private final Game game;
 
 
-    public SpriteSystem (Game game) {
+    public SpriteSystem() {
         this.spriteComponents = new ArrayList<>();
-        this.game = game;
     }
 
     @Override
@@ -38,7 +42,7 @@ public class SpriteSystem implements ISystem{
         comp.sprite.setOriginCenter();
         TransformComponent transform = (TransformComponent) entity.components.get("TransformComponent");
         if (transform == null)
-            transform = (TransformComponent) game.systems.get("TransformSystem").createComponent(entity);
+            transform = (TransformComponent) TransformSystem.ins.createComponent(entity);
 
         comp.sprite.setPosition(transform.x, transform.y);
         comp.sprite.setRotation(transform.rot);

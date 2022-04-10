@@ -2,21 +2,16 @@ package com.projectem.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 import com.projectem.game.ecs.*;
 import com.projectem.game.input.*;
 import com.projectem.game.ui.*;
 
-import java.util.HashMap;
-
 public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
 
     private final IUIManager uiManager;
     private final IPlatformInput inputManager;
-
-    public HashMap<String, ISystem> systems;
 
     private OrthographicCamera camera;
     private final float cameraSpeed = 0.25f;
@@ -31,9 +26,8 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
     public void start () {
         EntityGod.init();
 
-        systems = new HashMap<>();
-        systems.put("TransformSystem", new TransformSystem());
-        systems.put("SpriteSystem", new SpriteSystem(this));
+        TransformSystem.init();
+        SpriteSystem.init();
 
         inputManager.startProcessing();
 
@@ -42,20 +36,20 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         CommonRender.ins.useCamera = true;
 
         Entity body = new Entity("Body");
-        systems.get("TransformSystem").createComponent(body);
-        SpriteComponent spriteComponent = (SpriteComponent)systems.get("SpriteSystem").createComponent(body);
-        //spriteComponent.setTexture(new Texture(Gdx.files.internal("badlogic.jpg")));
+        TransformSystem.ins.createComponent(body);
+        SpriteComponent spriteComponent = (SpriteComponent) SpriteSystem.ins.createComponent(body);
+        spriteComponent.setTexture(new Texture(Gdx.files.internal("badlogic.jpg")));
 
     }
 
     public void logicUpdate () {
-        systems.get("TransformSystem").update();
+        TransformSystem.ins.update();
     }
 
     public void frameUpdate() {
         inputManager.update();
 
-        systems.get("SpriteSystem").update();
+        SpriteSystem.ins.update();
     }
 
     @Override
@@ -84,10 +78,8 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
     @Override
     public void dispose() {
         EntityGod.ins.dispose();
-        for (ISystem system : systems.values()) {
-            system.dispose();
-        }
-        systems.clear();
+        SpriteSystem.ins.dispose();
+        TransformSystem.ins.dispose();
     }
 
     public void exitGame () {
