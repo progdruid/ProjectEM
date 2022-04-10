@@ -25,7 +25,7 @@ public class SpriteSystem implements IComponentSystem {
     @Override
     public void update() {
         for (SpriteComponent comp : spriteComponents) {
-            TransformComponent transform = (TransformComponent) (comp.getEntity().components.get("TransformComponent"));
+            TransformComponent transform = comp.getEntity().transform;
             comp.sprite.setPosition(transform.x, transform.y);
             comp.sprite.setRotation(transform.rot);
             comp.sprite.setScale(transform.scaleX, transform.scaleY);
@@ -40,13 +40,9 @@ public class SpriteSystem implements IComponentSystem {
 
         comp.sprite = new Sprite(comp.getTexture());
         comp.sprite.setOriginCenter();
-        TransformComponent transform = (TransformComponent) entity.components.get("TransformComponent");
-        if (transform == null)
-            transform = (TransformComponent) TransformSystem.ins.createComponent(entity);
-
-        comp.sprite.setPosition(transform.x, transform.y);
-        comp.sprite.setRotation(transform.rot);
-        comp.sprite.setScale(transform.scaleX, transform.scaleY);
+        comp.sprite.setCenter(entity.transform.x, entity.transform.y);
+        comp.sprite.setRotation(entity.transform.rot);
+        comp.sprite.setScale(entity.transform.scaleX, entity.transform.scaleY);
         CommonRender.ins.sprites.put(entity.name, comp.sprite);
 
         return comp;

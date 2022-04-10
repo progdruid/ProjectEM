@@ -33,7 +33,7 @@ public class TransformSystem implements IComponentSystem {
 
     @Override
     public void deleteComponent(Entity entity) {
-        TransformComponent transform = (TransformComponent) entity.components.get("TransformComponent");
+        TransformComponent transform = entity.transform;
         entity.components.remove("TransformComponent");
         transforms.remove(transform);
     }
