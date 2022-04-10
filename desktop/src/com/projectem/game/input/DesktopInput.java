@@ -43,7 +43,7 @@ public class DesktopInput implements IPlatformInput {
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.ESCAPE) {
-            acceptor.exitMainGame();
+            acceptor.quitToMenu();
         }
         return false;
     }

@@ -6,21 +6,24 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 import com.projectem.game.ecs.*;
 import com.projectem.game.input.*;
+import com.projectem.game.menu.ISceneManager;
 import com.projectem.game.ui.*;
 
 public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
 
     private final IUIManager uiManager;
     private final IPlatformInput inputManager;
+    private final ISceneManager sceneManager;
 
     private OrthographicCamera camera;
     private final float cameraSpeed = 0.25f;
     private final float minZoom = 0.5f;
     private final float maxZoom = 10f;
 
-    public Game (IUIManagerCreator uiCreator, IPlatformInputCreator inputCreator) {
-        uiManager = uiCreator.createUIManager(this);
-        inputManager = inputCreator.createInputManager(this);
+    public Game (IUIManagerCreator uiCreator, IPlatformInputCreator inputCreator, ISceneManager sceneManager) {
+        this.uiManager = uiCreator.createUIManager(this);
+        this.inputManager = inputCreator.createInputManager(this);
+        this.sceneManager = sceneManager;
     }
 
 
@@ -33,8 +36,7 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         inputManager.startProcessing();
 
         this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        CommonRender.ins.camera = this.camera;
-        CommonRender.ins.useCamera = true;
+        CommonRender.ins.setCamera(camera);
 
         Entity body = new Entity("Body");
         TransformSystem.ins.createComponent(body);
@@ -81,11 +83,12 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         EntityGod.ins.dispose();
         SpriteSystem.ins.dispose();
         TransformSystem.ins.dispose();
+        CommonRender.ins.setCamera(null);
     }
 
     @Override
-    public void exitMainGame() {
+    public void quitToMenu() {
         dispose();
-        Gdx.app.exit();
+        sceneManager.openMainMenu();
     }
 }

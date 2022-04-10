@@ -1,5 +1,6 @@
 package com.projectem.game.menu;
 
-public interface IMenuAcceptor {
+public interface ISceneManager {
     public void startMainGame();
+    public void openMainMenu();
 }

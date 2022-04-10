@@ -9,15 +9,15 @@ import com.projectem.game.ui.UIButton;
 
 public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
 
-    private final IMenuAcceptor acceptor;
+    private final ISceneManager sceneManager;
 
     private final UIButton playButton;
     private final int playButtonHalfWidth = 80;
     private final int playButtonHalfHeight = 20;
 
 
-    public DesktopMenu (IMenuAcceptor _acceptor) {
-        acceptor = _acceptor;
+    public DesktopMenu (ISceneManager sceneManager) {
+        this.sceneManager = sceneManager;
         Gdx.input.setInputProcessor(this);
 
         playButton = new UIButton(
@@ -29,20 +29,21 @@ public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
                 new BitmapFont (Gdx.files.internal("Font.fnt")));
 
         CommonRender.ins.uiElements.add(playButton);
-        playButton.addListener(this);
+        this.playButton.addListener(this);
 
 
     }
 
     @Override
     public void dispose() {
-        CommonRender.ins.uiElements.remove(playButton);
-        playButton.removeListener(this);
+        CommonRender.ins.uiElements.remove(this.playButton);
+        this.playButton.removeListener(this);
     }
 
     @Override
     public void buttonPressed() {
-        acceptor.startMainGame();
+        dispose();
+        sceneManager.startMainGame();
     }
 
     //region InputProcessor handlers
