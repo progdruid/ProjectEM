@@ -31,12 +31,14 @@ public class Program extends ApplicationAdapter implements IMenuAcceptor {
 
 	@Override
 	public void render () {
-		CommonRender.ins.render();//multithreading is needed
-
-		if (this.state == GameState.Game)
+		if (this.state == GameState.Game){
 			this.game.frameUpdate();
+			this.game.logicUpdate();
+		}
 //		else if (this.state == GameState.Menu)
 //			this.menu.update();
+
+		CommonRender.ins.render();//multithreading is needed
 	}
 
 	@Override

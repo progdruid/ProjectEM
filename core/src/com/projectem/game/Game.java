@@ -16,7 +16,7 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
     private final IUIManager uiManager;
     private final IPlatformInput inputManager;
 
-    private HashMap<String, ISystem> systems;
+    public HashMap<String, ISystem> systems;
 
     private OrthographicCamera camera;
     private final float cameraSpeed = 0.25f;
@@ -30,9 +30,10 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
 
     public void start () {
         EntityGod.init();
+
         systems = new HashMap<>();
-        //creating
-        //systems
+        systems.put("TransformSystem", new TransformSystem());
+        systems.put("SpriteSystem", new SpriteSystem(this));
 
         inputManager.startProcessing();
 
@@ -40,18 +41,21 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         CommonRender.ins.camera = this.camera;
         CommonRender.ins.useCamera = true;
 
-        Texture tex = new Texture(Gdx.files.internal("badlogic.jpg"));
-        Sprite sprite = new Sprite(tex);
+        Entity body = new Entity("Body");
+        systems.get("TransformSystem").createComponent(body);
+        SpriteComponent spriteComponent = (SpriteComponent)systems.get("SpriteSystem").createComponent(body);
+        //spriteComponent.setTexture(new Texture(Gdx.files.internal("badlogic.jpg")));
 
-        CommonRender.ins.sprites.put("badlogic", sprite);
     }
 
     public void logicUpdate () {
-
+        systems.get("TransformSystem").update();
     }
 
     public void frameUpdate() {
         inputManager.update();
+
+        systems.get("SpriteSystem").update();
     }
 
     @Override
@@ -80,9 +84,8 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
     @Override
     public void dispose() {
         EntityGod.ins.dispose();
-        String[] keys = systems.keySet().toArray(new String[0]);
-        for (int i = 0; i < keys.length; i++){
-            systems.get(keys[i]).dispose();
+        for (ISystem system : systems.values()) {
+            system.dispose();
         }
         systems.clear();
     }
