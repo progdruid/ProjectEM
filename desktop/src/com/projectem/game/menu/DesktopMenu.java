@@ -42,7 +42,7 @@ public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
 
     @Override
     public void buttonPressed() {
-        acceptor.startGame();
+        acceptor.startMainGame();
     }
 
     //region InputProcessor handlers

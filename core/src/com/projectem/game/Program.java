@@ -42,7 +42,7 @@ public class Program extends ApplicationAdapter implements IMenuAcceptor {
 	}
 
 	@Override
-	public void startGame() {
+	public void startMainGame() {
 		this.menu.dispose();
 
 		this.game = new Game(this.gameUICreator, this.inputCreator);

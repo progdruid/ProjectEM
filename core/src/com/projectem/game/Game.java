@@ -23,6 +23,7 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         inputManager = inputCreator.createInputManager(this);
     }
 
+
     public void start () {
         EntityGod.init();
 
@@ -82,7 +83,9 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         TransformSystem.ins.dispose();
     }
 
-    public void exitGame () {
+    @Override
+    public void exitMainGame() {
         dispose();
+        Gdx.app.exit();
     }
 }
