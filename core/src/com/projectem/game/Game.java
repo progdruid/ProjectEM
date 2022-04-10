@@ -37,13 +37,13 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         inputManager.startProcessing();
 
         this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        CommonRender.ins.setCamera(this.camera);
-        CommonRender.ins.toggleCamera(true);
+        CommonRender.ins.camera = this.camera;
+        CommonRender.ins.useCamera = true;
 
         Texture tex = new Texture(Gdx.files.internal("badlogic.jpg"));
         Sprite sprite = new Sprite(tex);
 
-        CommonRender.ins.addSprite(sprite);
+        CommonRender.ins.sprites.put("badlogic", sprite);
     }
 
     public void logicUpdate () {

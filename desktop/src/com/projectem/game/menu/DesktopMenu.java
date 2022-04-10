@@ -28,7 +28,7 @@ public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
                 playButtonHalfHeight * 2,
                 new BitmapFont (Gdx.files.internal("Font.fnt")));
 
-        CommonRender.ins.addUIElement(playButton);
+        CommonRender.ins.uiElements.add(playButton);
         playButton.addListener(this);
 
 
@@ -36,7 +36,7 @@ public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
 
     @Override
     public void dispose() {
-        CommonRender.ins.removeUIElement(playButton);
+        CommonRender.ins.uiElements.remove(playButton);
         playButton.removeListener(this);
     }
 
