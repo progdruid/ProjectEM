@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.projectem.game.ecs.*;
 import com.projectem.game.input.*;
 import com.projectem.game.menu.ISceneManager;
+import com.projectem.game.render.Renderer;
 import com.projectem.game.ui.*;
 
 public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
@@ -36,7 +37,7 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         inputManager.startProcessing();
 
         this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        CommonRender.ins.setCamera(camera);
+        Renderer.ins.setCamera(camera);
 
         Entity body = new Entity("Body");
         TransformSystem.ins.createComponent(body);
@@ -83,7 +84,7 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
         EntityGod.ins.dispose();
         SpriteSystem.ins.dispose();
         TransformSystem.ins.dispose();
-        CommonRender.ins.setCamera(null);
+        Renderer.ins.setCamera(null);
     }
 
     @Override

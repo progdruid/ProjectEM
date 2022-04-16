@@ -3,7 +3,7 @@ package com.projectem.game.menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.projectem.game.CommonRender;
+import com.projectem.game.render.Renderer;
 import com.projectem.game.ui.IButtonListener;
 import com.projectem.game.ui.UIButton;
 
@@ -30,7 +30,7 @@ public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
                 new BitmapFont (Gdx.files.internal("Font.fnt"))
         );
 
-        CommonRender.ins.uiElements.add(playButton);
+        Renderer.ins.uiElements.add(playButton);
         this.playButton.addListener(this);
 
 
@@ -43,14 +43,14 @@ public class DesktopMenu implements IMenu, InputProcessor, IButtonListener {
                 new BitmapFont (Gdx.files.internal("Font.fnt"))
         );
 
-        CommonRender.ins.uiElements.add(quitButton);
+        Renderer.ins.uiElements.add(quitButton);
         this.quitButton.addListener(this);
     }
 
     @Override
     public void dispose() {
-        CommonRender.ins.uiElements.remove(this.playButton);
-        CommonRender.ins.uiElements.remove(this.quitButton);
+        Renderer.ins.uiElements.remove(this.playButton);
+        Renderer.ins.uiElements.remove(this.quitButton);
         this.playButton.removeListener(this);
         this.quitButton.removeListener(this);
     }

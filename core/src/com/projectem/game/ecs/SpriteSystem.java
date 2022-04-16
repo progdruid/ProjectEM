@@ -1,7 +1,7 @@
 package com.projectem.game.ecs;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.projectem.game.CommonRender;
+import com.projectem.game.render.Renderer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class SpriteSystem implements IComponentSystem {
         comp.sprite.setCenter(entity.transform.x, entity.transform.y);
         comp.sprite.setRotation(entity.transform.rot);
         comp.sprite.setScale(entity.transform.scaleX, entity.transform.scaleY);
-        CommonRender.ins.sprites.put(entity.name, comp.sprite);
+        Renderer.ins.sprites.put(entity.name, comp.sprite);
 
         return comp;
     }
@@ -52,7 +52,7 @@ public class SpriteSystem implements IComponentSystem {
     public void deleteComponent(Entity entity) {
         SpriteComponent spriteComponent = (SpriteComponent) entity.components.get("SpriteComponent");
 
-        CommonRender.ins.sprites.remove(entity.name);
+        Renderer.ins.sprites.remove(entity.name);
         spriteComponents.remove(spriteComponent);
         entity.components.remove("SpriteComponent");
     }

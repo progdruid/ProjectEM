@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.projectem.game.input.*;
 import com.projectem.game.menu.*;
+import com.projectem.game.render.Renderer;
 import com.projectem.game.ui.*;
 
 public class Program extends ApplicationAdapter implements ISceneManager {
@@ -24,7 +25,7 @@ public class Program extends ApplicationAdapter implements ISceneManager {
 
 	@Override
 	public void create (){
-		CommonRender.initializeRender();
+		Renderer.initializeRender();
 
 		openMainMenu();
 	}
@@ -46,7 +47,7 @@ public class Program extends ApplicationAdapter implements ISceneManager {
 //		else if (this.state == GameState.Menu)
 //			this.menu.update();
 
-		CommonRender.ins.render();//multithreading is needed
+		Renderer.ins.render();//multithreading is needed
 	}
 
 	@Override

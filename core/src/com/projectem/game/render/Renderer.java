@@ -1,8 +1,7 @@
-package com.projectem.game;
+package com.projectem.game.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.projectem.game.ui.IUIElement;
 
@@ -14,13 +13,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CommonRender {
+public class Renderer {
 
     //region static
-    public static CommonRender ins;
+    public static Renderer ins;
 
     public static void initializeRender () {
-        ins = new CommonRender();
+        ins = new Renderer();
     }
     //endregion
 
@@ -30,10 +29,11 @@ public class CommonRender {
 
     public HashMap<String, Sprite> sprites;
     public List<IUIElement> uiElements;
-    private Camera camera;
+
+    private OrthographicCamera camera;
     //endregion
 
-    public CommonRender () {
+    public Renderer() {
         uiBatch = new SpriteBatch();
         sprites = new HashMap<>();
         uiElements = new ArrayList<>();
@@ -41,7 +41,7 @@ public class CommonRender {
 
     //region api
     public void render(){
-        ScreenUtils.clear(1, 0, 0, 1);
+        ScreenUtils.clear(27 / 256f, 26 / 256f, 38 / 256f, 1);
 
         if (camera != null) {
             batch.setProjectionMatrix(camera.combined);
@@ -63,7 +63,11 @@ public class CommonRender {
         uiBatch.end();
     }
 
-    public void setCamera(Camera camera) {
+    public OrthographicCamera getCamera () {
+        return camera;
+    }
+
+    public void setCamera(OrthographicCamera camera) {
         batch = new SpriteBatch();
         this.camera = camera;
     }
