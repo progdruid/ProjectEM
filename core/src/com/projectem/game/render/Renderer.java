@@ -41,7 +41,7 @@ public class Renderer {
 
     //region api
     public void render(){
-        ScreenUtils.clear(27 / 256f, 26 / 256f, 38 / 256f, 1);
+        ScreenUtils.clear(43 / 256f, 41 / 256f, 61 / 256f, 1);
 
         if (camera != null) {
             batch.setProjectionMatrix(camera.combined);
