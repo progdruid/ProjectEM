@@ -70,13 +70,11 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
     @Override
     public void zoom(float amount) {
         float nextZoom = camera.zoom + amount * (camera.zoom + 1);
-        if (nextZoom < minZoom)
-            camera.zoom = minZoom;
-        else if (nextZoom > maxZoom)
-            camera.zoom = maxZoom;
-        else
+        if (nextZoom > minZoom && nextZoom < maxZoom)
+        {
             camera.zoom = nextZoom;
-        camera.update();
+            camera.update();
+        }
     }
 
     @Override
