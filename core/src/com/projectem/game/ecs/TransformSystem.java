@@ -25,7 +25,7 @@ public class TransformSystem implements IComponentSystem {
 
     @Override
     public IComponent createComponent(Entity entity) {
-        TransformComponent transform = new TransformComponent(entity, this);
+        TransformComponent transform = new TransformComponent(entity);
         entity.components.put(transform.getClass().getSimpleName(), transform);
         transforms.add(transform);
         return transform;

@@ -8,14 +8,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class SpriteComponent implements IComponent{
 
     private final Entity entity;
-    private final SpriteSystem system;
 
     private Texture texture;
     public Sprite sprite;
 
-    public SpriteComponent (Entity entity, SpriteSystem system) {
+    public SpriteComponent (Entity entity) {
         this.entity = entity;
-        this.system = system;
 
         Pixmap pixmap = new Pixmap(128, 128, Pixmap.Format.RGB888);
         pixmap.setColor(Color.MAGENTA);
@@ -39,6 +37,6 @@ public class SpriteComponent implements IComponent{
 
     @Override
     public IComponentSystem getSystem() {
-        return system;
+        return SpriteSystem.ins;
     }
 }

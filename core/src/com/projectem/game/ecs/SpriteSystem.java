@@ -34,7 +34,7 @@ public class SpriteSystem implements IComponentSystem {
 
     @Override
     public IComponent createComponent(Entity entity) {
-        SpriteComponent comp = new SpriteComponent(entity, this);
+        SpriteComponent comp = new SpriteComponent(entity);
         entity.components.put(comp.getClass().getSimpleName(), comp);
         spriteComponents.add(comp);
 

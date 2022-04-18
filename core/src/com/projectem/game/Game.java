@@ -33,21 +33,24 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
 
         TransformSystem.init();
         SpriteSystem.init();
+        CellSystem.init();
 
         inputManager.startProcessing();
 
         this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Renderer.ins.setCamera(camera);
 
-        Entity body = new Entity("Body");
-        TransformSystem.ins.createComponent(body);
-        SpriteComponent spriteComponent = (SpriteComponent) SpriteSystem.ins.createComponent(body);
-        spriteComponent.setTexture(new Texture(Gdx.files.internal("badlogic.jpg")));
+        Entity cell = new Entity("Cell");
+        TransformSystem.ins.createComponent(cell);
+        SpriteComponent spriteComponent = (SpriteComponent) SpriteSystem.ins.createComponent(cell);
+        spriteComponent.setTexture(new Texture(Gdx.files.internal("emptycell.png")));
+        CellSystem.ins.createComponent(cell);
 
     }
 
     public void logicUpdate () {
         TransformSystem.ins.update();
+        CellSystem.ins.update();
     }
 
     public void frameUpdate() {
@@ -80,8 +83,11 @@ public class Game implements IUIAcceptor, ICommonInputAcceptor, Disposable {
     @Override
     public void dispose() {
         EntityGod.ins.dispose();
+
+        CellSystem.ins.dispose();
         SpriteSystem.ins.dispose();
         TransformSystem.ins.dispose();
+
         Renderer.ins.setCamera(null);
     }
 
